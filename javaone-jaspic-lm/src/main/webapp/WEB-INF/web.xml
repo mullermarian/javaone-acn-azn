@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>PublicServlet</servlet-name>
+        <servlet-class>com.serli.javaone.jaspic.lm.PublicServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PublicServlet</servlet-name>
+        <url-pattern>/welcome</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.serli.javaone.jaspic.lm.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PrivateServlet</servlet-name>
+        <servlet-class>com.serli.javaone.jaspic.lm.PrivateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PrivateServlet</servlet-name>
+        <url-pattern>/private/doSomething</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>welcome</welcome-file>
+    </welcome-file-list>
+
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Secured area</web-resource-name>
+            <url-pattern>/private/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>AuthenticatedUser</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role>
+        <role-name>AuthenticatedUser</role-name>
+    </security-role>
+</web-app>
